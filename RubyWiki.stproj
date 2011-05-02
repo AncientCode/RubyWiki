@@ -43,17 +43,21 @@
     <RootNamespace>RubyWiki</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Ruby Include="lib\cfgparse.rb" />
-    <Ruby Include="lib\query.rb" />
+    <Ruby Include="lib\query.rb">
+      <RequireFiles>F:\dev\RubyWiki\lib\rubywiki.rb</RequireFiles>
+    </Ruby>
     <Ruby Include="lib\exceptions.rb" />
     <Ruby Include="lib\initrbw.rb" />
     <Ruby Include="lib\init.rb" />
-    <Ruby Include="lib\rubywiki.rb" />
+    <Ruby Include="lib\rubywiki.rb">
+      <RequireFiles>F:\dev\RubyWiki\lib\query.rb；F:\dev\RubyWiki\lib\init.rb;F:\dev\RubyWiki\lib\exceptions.rb;F:\dev\RubyWiki\lib\initrbw.rb</RequireFiles>
+    </Ruby>
     <Ruby Include="test.rb" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="config.yaml" />
     <Content Include="errorcode.yaml" />
+    <Content Include="README.markdown" />
     <Content Include="wikis\softx.yaml" />
     <Content Include="wikis\wikipedia_en.yaml" />
   </ItemGroup>

@@ -5,14 +5,21 @@
 # Copyright:: SoftX Technologies Inc.
 # License:: GNU General Public License version 3
 
+# Include Path
 INC = File.expand_path(File.dirname(__FILE__)) + '/'
+# Exceptions are thrown in this file, loading it
 require INC + 'exceptions.rb'
 
+# RubyWiki version
 RBW_VERSION = '0.1'
+# Is it running on Windows??
 WIN32 = (RUBY_PLATFORM.downcase.include?("mingw") or RUBY_PLATFORM.downcase.include?("mswin"))
-if not defined?ConfigFile
+
+if not (defined?ConfigFile or dofined?ConfigDir)
 	if ENV['RBWIKI_CFG']
+		# Configuration Directory
 		ConfigDir = ENV['RBWIKI_CFG'] + '/'
+		# Configuration File
 		ConfigFile = ConfigDir + 'rbwiki.yml'
 	elsif not WIN32 and File.directory(ENV['HOME'] + '/.rbwikirc')
 		ConfigDir = ENV['HOME'] + '/.rbwikirc'

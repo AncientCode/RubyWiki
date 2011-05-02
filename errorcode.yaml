@@ -7,6 +7,7 @@ RubyWikiError: # Initialize Error
     12: 12 Invalid Wiki Config
     13: Wiki doesn't exist
     14: Reserved
+# General Errors
 RbWikiErr::General:
     30: Reserved
     31: No Such User
@@ -14,6 +15,7 @@ RbWikiErr::General:
     33: Forbidden
 # Module Specific Errors
 # Core modules uses 100-299, each has 10 or 20
+# Login Specific Errors
 RbWikiErr::Login:
     100: Login Error
     101: Illegal User
@@ -21,10 +23,11 @@ RbWikiErr::Login:
 
 # Querying Modules uses 300-499, each specific query has multiple of 5
 RbWikiErr::Query:
-    # General Query Error
+    # General Query Errors
     General:
         300: Query Error
         301: Can't Query
-    SiteInfo:
+    # General Site Info Errors
+    GeneralSiteInfo:
         310: No Such Type
     
