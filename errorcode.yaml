@@ -1,0 +1,25 @@
+# Errors
+RubyWikiError: # Initialize Error
+    start: 10
+    end: 29
+    10: No Config
+    11: No Such User
+    12: 12 Invalid Wiki Config
+    13: Wiki doesn't exist
+    14: Reserved
+RbWikiErr::General:
+    30: Reserved
+    31: No Such User
+    32: Blocked
+    33: Forbidden
+# Module Specific Errors
+# Core modules uses 100-299, each has 10 or 20
+RbWikiErr::Login:
+    100: Login Error
+    101: Illegal User
+    102: Wrong Password
+
+# Querying Modules uses 300-499, each specific query has multiple of 5
+RbWikiErr::Query:
+    300: Query Error
+    301: Can't Query

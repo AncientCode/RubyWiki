@@ -1,0 +1,74 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <Name>Debug</Name>
+    <OutputPath>Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <Name>Release</Name>
+    <OutputPath>Release\</OutputPath>
+  </PropertyGroup>
+  <UsingTask TaskName="Sapphire.Steel.SteelRubyBuild" AssemblyName="SteelBuild, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8a42f26dbbcba2be, processorArchitecture=x86" />
+  <UsingTask TaskName="Sapphire.Steel.SteelRailsBuild" AssemblyName="SteelBuild, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8a42f26dbbcba2be, processorArchitecture=x86" />
+  <Target Name="BuildRails" Inputs="@(EmbeddedRuby)" Outputs="$(MSBuildProjectDirectory)\SyntaxCheck\%(Identity)">
+    <MakeDir Directories="SyntaxCheck" />
+    <SteelRailsBuild ERBFile="@(EmbeddedRuby)" ProjectDirectory="$(MSBuildProjectDirectory)" ERBProcessor="$(ERBProcessor)" ERBFlags="$(ERBFlags)" ERBLibraryFiles="$(ERBLibraryFiles)" ERBTimeout="$(ERBTimeout)" />
+  </Target>
+  <Target Name="BuildRuby" Inputs="@(Ruby)" Outputs="$(MSBuildProjectDirectory)\SyntaxCheck\%(Identity)">
+    <MakeDir Directories="SyntaxCheck" />
+    <SteelRubyBuild RubyFile="@(Ruby)" ProjectDirectory="$(MSBuildProjectDirectory)" RubyInterpreter="$(RubyInterpreter)" RubyInterpreterFlags="$(RubyInterpreterFlags)" RubyLibraryFiles="$(RubyLibraryFiles)" RubyLibraryPaths="$(LibraryPath)" RubyTimeout="$(RubyTimeout)" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\SyntaxCheck" />
+  </Target>
+  <Target Name="Build" DependsOnTargets="$(BuildDependsOn)" Inputs="@(Ruby); @(EmbeddedRuby)" Outputs="$(MSBuildProjectDirectory)\SyntaxCheck\%(Identity)">
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\SyntaxCheck" />
+  </Target>
+  <PropertyGroup>
+    <RebuildDependsOn>
+      Clean;
+      Build;
+    </RebuildDependsOn>
+    <BuildDependsOn>
+      BeforeBuild;
+      BuildRuby; 
+      BuildRails;
+      AfterBuild;
+    </BuildDependsOn>
+    <SteelVersion>1.2</SteelVersion>
+    <ProjectGuid>{51050086-1a97-4443-811d-29a8c6442121}</ProjectGuid>
+    <AssemblyName>RubyWiki</AssemblyName>
+    <Name>RubyWiki</Name>
+    <RootNamespace>RubyWiki</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Ruby Include="lib\cfgparse.rb" />
+    <Ruby Include="lib\query.rb" />
+    <Ruby Include="lib\exceptions.rb" />
+    <Ruby Include="lib\initrbw.rb" />
+    <Ruby Include="lib\init.rb" />
+    <Ruby Include="lib\rubywiki.rb" />
+    <Ruby Include="test.rb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="config.yaml" />
+    <Content Include="errorcode.yaml" />
+    <Content Include="wikis\softx.yaml" />
+    <Content Include="wikis\wikipedia_en.yaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib" />
+    <Folder Include="wikis" />
+  </ItemGroup>
+  <Target Name="Rebuild" DependsOnTargets="$(RebuildDependsOn)" Inputs="@(Ruby)" Outputs="$(MSBuildProjectDirectory)\SyntaxCheck\%(Identity)">
+  </Target>
+  <Target Name="BeforeBuild" Condition="'$(PreBuildEvent)'!='' ">
+    <Exec Command="$(PreBuildEvent)" />
+  </Target>
+  <Target Name="AfterBuild" Condition="'$(PostBuildEvent)'!='' ">
+    <Exec Command="$(PostBuildEvent)" />
+  </Target>
+  <!--<Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />-->
+  <Target Name="ResolveAssemblyReferences" />
+</Project>

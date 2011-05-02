@@ -1,0 +1,18 @@
+# The SoftX Wiki Specifiation
+
+# Path to the wiki
+protocol: http
+domain: www.softx.tk
+path: /w # no slash in the end!
+article: /wiki # Article path
+api: api.php # Path to API, relative to domain+path
+
+# Settings
+name: SoftX Wiki
+slog: softx # URL friendly version
+epm: 5 # edit per minute
+maxlag: 5 # maxlag level for replicate dbs
+
+# Wikimedia mode, for squid cache frontends
+wm: no
+
