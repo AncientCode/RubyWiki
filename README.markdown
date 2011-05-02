@@ -19,5 +19,6 @@ forbid others to use your account)
 Usages & Sample
 ---------------
 Login and print MediaWiki Version:
+
     wiki = RubyWiki.new
     puts wiki.site_info_general 'generator'
