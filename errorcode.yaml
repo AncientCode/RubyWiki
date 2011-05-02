@@ -21,5 +21,10 @@ RbWikiErr::Login:
 
 # Querying Modules uses 300-499, each specific query has multiple of 5
 RbWikiErr::Query:
-    300: Query Error
-    301: Can't Query
+    # General Query Error
+    General:
+        300: Query Error
+        301: Can't Query
+    SiteInfo:
+        310: No Such Type
+    

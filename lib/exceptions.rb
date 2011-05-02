@@ -7,6 +7,8 @@ end
 module RbWikiErr
 	class General < RubyWikiError; end
 	class Login < RubyWikiError; end
-	class Query < RubyWikiError; end
+	module Query
+		class General < RubyWikiError; end
+		class SiteInfo < RubyWikiError; end
 	end
 end
