@@ -8,7 +8,7 @@
 # Include Path
 INC = File.expand_path(File.dirname(__FILE__)) + '/'
 # Exceptions are thrown in this file, loading it
-require INC + 'exceptions.rb'
+require './exceptions.rb'
 
 # RubyWiki version
 RBW_VERSION = '0.1'

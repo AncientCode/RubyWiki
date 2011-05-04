@@ -6,12 +6,17 @@
 # Copyright:: SoftX Technologies Inc.
 # License:: GNU General Public License version 3
 
+ver = RUBY_VERSION.split('.')
+RubyMajorVersion = ver[0].to_i
+RubyMinorVersion = ver[1].to_i
+RubyBuildVersion = ver[2].to_i
+
 require 'rubygems'
 require 'yaml'
 require 'curb'
 require 'tempfile'
-require_relative 'rubywiki/initrbw'
+require './rubywiki/initrbw'
 
 # Load basic class
-require_relative 'rubywiki/init'
-require_relative 'rubywiki/query'
+require './rubywiki/init'
+require './rubywiki/query'
