@@ -10,8 +10,8 @@ require 'rubygems'
 require 'yaml'
 require 'curb'
 require 'tempfile'
-require File.expand_path(File.dirname(__FILE__)) + '/initrbw.rb'
+require_relative 'rubywiki/initrbw'
 
 # Load basic class
-require INC + 'init.rb'
-require INC + 'query.rb'
+require_relative 'rubywiki/init'
+require_relative 'rubywiki/query'

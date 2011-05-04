@@ -4,8 +4,6 @@
 # Copyright:: SoftX Technologies Inc.
 # License:: GNU General Public License version 3
 
-require File.dirname(__FILE__) + '/init.rb'
-
 class RubyWiki
 	# Fetches the General Wiki Info
 	def site_info_general (type = nil)

@@ -15,7 +15,7 @@ RBW_VERSION = '0.1'
 # Is it running on Windows??
 WIN32 = (RUBY_PLATFORM.downcase.include?("mingw") or RUBY_PLATFORM.downcase.include?("mswin"))
 
-if not (defined?ConfigFile or dofined?ConfigDir)
+if not defined?ConfigFile or not defined?ConfigDir
 	if ENV['RBWIKI_CFG']
 		# Configuration Directory
 		ConfigDir = ENV['RBWIKI_CFG'] + '/'
@@ -27,8 +27,8 @@ if not (defined?ConfigFile or dofined?ConfigDir)
 	elsif WIN32 and File.readable?(ENV['USERPROFILE'].gsub('\\', '/') + '/rbwikirc')
 		ConfigDir = ENV['USERPROFILE'].gsub('\\', '/') + '/rbwikirc/'
 		ConfigFile = ConfigDir + 'rbwiki.yml'
-	elsif File.readable?(INC + '../config.yaml')
-		ConfigDir = INC + '../'
+	elsif File.readable?(INC + '../../config.yaml')
+		ConfigDir = INC + '../../'
 		ConfigFile = ConfigDir + 'config.yaml'
 	else
 		raise RubyWikiError, '10 No Config'
