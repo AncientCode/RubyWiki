@@ -6,17 +6,32 @@
 
 require '../rubywiki'
 require './exceptions'
+require './init'
 
 class RubyWiki
 	# Fetches the General Wiki Info
 	def site_info_general (type = nil)
-		resp = get_api 'action=query&meta=siteinfo'
-		exception RbWikiErr::Query::General, 301, 'Can\'t Query' unless resp.instance_of?Hash
+		resp = query_processor 'meta', 'siteinfo'
 		if type
 			exception RbWikiErr::Query::GeneralSiteInfo, 310, 'No Such Type' unless resp['query']['general'][type]
-			return resp['query']['general'][type]
+			resp['query']['general'][type]
 		else
-			return resp['query']['general']
+			resp['query']['general']
 		end
+	end
+	
+	protected
+	def query_processor (type, mod, args = nil)
+        query = "action=query&#{type}=#{mod}"
+        if args
+            args.each do |arg, value|
+                query += "&#{arg}=#{value}"
+            end
+        end
+        resp = get_api(query)
+        unless resp.instance_of?Hash
+            exception RbWikiErr::Query::General, 301, 'Can\'t Query'
+        end
+        resp['query']
 	end
 end
