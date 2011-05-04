@@ -16,8 +16,6 @@ Requirements
 forbid others to use your account)
 * Highline (if you want to type your password in a shell,
 `gem install highline`)
-* Backports (on Ruby 1.8.x because we used require_relative which works for
-1.9.x `gem install backports`)
 
 Usages & Sample
 ---------------
