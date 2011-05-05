@@ -10,13 +10,18 @@ ver = RUBY_VERSION.split('.')
 RubyMajorVersion = ver[0].to_i
 RubyMinorVersion = ver[1].to_i
 RubyBuildVersion = ver[2].to_i
+if RubyMajorVersion >= 1 and RubyMinorVersion >= 9 and RubyBuildVersion >= 2
+    $: << File::expand_path(File::dirname(__FILE__))
+    $: << File::expand_path(File::dirname(__FILE__) + '/rubywiki')
+end
 
 require 'rubygems'
 require 'yaml'
 require 'curb'
 require 'tempfile'
-require './rubywiki/initrbw'
+require 'initrbw'
 
 # Load basic class
-require './rubywiki/init'
-require './rubywiki/query'
+require 'init'
+require 'query'
+require 'page'

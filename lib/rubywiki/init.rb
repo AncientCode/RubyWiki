@@ -18,7 +18,7 @@ require 'rubygems'
 require 'yaml'
 require 'curb'
 require 'tempfile'
-require './rubywiki/initrbw'
+require 'initrbw'
 
 # This is the main RubyWiki class, it contains all you need to perform actions
 # on a wiki. All requests are done with API and YAML (built-in version in the

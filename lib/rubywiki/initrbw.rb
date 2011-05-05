@@ -6,9 +6,9 @@
 # License:: GNU General Public License version 3
 
 # Include Path
-INC = File.expand_path(File.dirname(__FILE__)) + '/'
+INC = File.expand_path(File.dirname(__FILE__) + '/..') + '/'
 # Exceptions are thrown in this file, loading it
-require './exceptions.rb'
+require 'exceptions'
 
 # RubyWiki version
 RBW_VERSION = '0.1'
@@ -27,8 +27,8 @@ if not defined?ConfigFile or not defined?ConfigDir
 	elsif WIN32 and File.readable?(ENV['USERPROFILE'].gsub('\\', '/') + '/rbwikirc')
 		ConfigDir = ENV['USERPROFILE'].gsub('\\', '/') + '/rbwikirc/'
 		ConfigFile = ConfigDir + 'rbwiki.yml'
-	elsif File.readable?(INC + '../../config.yaml')
-		ConfigDir = INC + '../../'
+	elsif File.readable?(INC + '../config.yaml')
+		ConfigDir = INC + '../'
 		ConfigFile = ConfigDir + 'config.yaml'
 	else
 		raise RubyWikiError, '10 No Config'

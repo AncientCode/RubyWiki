@@ -4,19 +4,18 @@
 # Copyright:: SoftX Technologies Inc.
 # License:: GNU General Public License version 3
 
-require '../rubywiki'
-require './exceptions'
-require './init'
+require 'exceptions'
+require 'init'
 
 class RubyWiki
 	# Fetches the General Wiki Info
 	def site_info_general (type = nil)
 		resp = query_processor 'meta', 'siteinfo'
 		if type
-			exception RbWikiErr::Query::GeneralSiteInfo, 310, 'No Such Type' unless resp['query']['general'][type]
-			resp['query']['general'][type]
+			exception RbWikiErr::Query::GeneralSiteInfo, 310, 'No Such Type' unless resp['general'][type]
+			resp['general'][type]
 		else
-			resp['query']['general']
+			resp['general']
 		end
 	end
 	
