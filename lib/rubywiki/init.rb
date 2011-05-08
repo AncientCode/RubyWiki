@@ -233,7 +233,7 @@ class RubyWiki
 				exception RbWikiErr::Login, 101, 'Illegal User'
 			else
 				puts 'This is an error that wasn\'t handled by RubyWiki. This'
-				puts "might indicate a bug. Please report it to:"
+				puts 'might indicate a bug. Please report it to:'
 				puts @@bugtrac
 				puts 'The following is an error dump, attach it to the report:'
 				puts YAML::dump(resp)
@@ -245,11 +245,13 @@ class RubyWiki
 		
 	# cURL Handles Initiailzers
 	def init_curl!
+		@cookie_file = File.expand_path ConfigDir + @conf['cookie']
 		@get = Curl::Easy.new()
 		@post = Curl::Easy.new(@api_url)
 		@get.enable_cookies = @post.enable_cookies = true
 		@get.useragent  = @post.useragent  = @useragent
-		@get.cookiejar = @post.cookiejar = @get.cookiefile = @post.cookiefile = @temp
+		@get.cookiejar = @cookie_file
+		@post.cookiejar = @get.cookiefile = @post.cookiefile = @get.cookiejar
 		@get.headers    = @post.headers    = [
 			'Connection: keep-alive',
 			'Keep-Alive: 300',

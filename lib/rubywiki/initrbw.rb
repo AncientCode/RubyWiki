@@ -22,7 +22,7 @@ if not defined?ConfigFile or not defined?ConfigDir
 		# Configuration File
 		ConfigFile = ConfigDir + 'rbwiki.yml'
 	elsif not WIN32 and File.directory(ENV['HOME'] + '/.rbwikirc')
-		ConfigDir = ENV['HOME'] + '/.rbwikirc'
+		ConfigDir = ENV['HOME'] + '/.rbwikirc/'
 		ConfigFile = ConfigDir + 'rbwiki.yml'
 	elsif WIN32 and File.readable?(ENV['USERPROFILE'].gsub('\\', '/') + '/rbwikirc')
 		ConfigDir = ENV['USERPROFILE'].gsub('\\', '/') + '/rbwikirc/'
