@@ -17,7 +17,6 @@
 require 'rubygems'
 require 'yaml'
 require 'curb'
-require 'tempfile'
 require 'initrbw'
 
 # This is the main RubyWiki class, it contains all you need to perform actions
@@ -138,11 +137,6 @@ class RubyWiki
 			@pass = ask("Type in the password for #{@user}@#{@wikiname}:") { |q| q.echo = "*" }
 		end
 		# End of Username and password
-		
-		# Open up a temperory file for cURL cookies
-		@temp_handle = Tempfile.new('RubyWiki-cookie') # create
-		@temp = @temp_handle.path # Get path
-		@temp_handle.close # Close handle
 		
 		# Open the log file
 		@log = File.open(ConfigDir + 'rubywiki.log', 'a')

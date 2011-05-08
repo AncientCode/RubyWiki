@@ -1,0 +1,37 @@
+Gem::Specification.new do |s|
+  s.name    = "rubywiki"
+  s.authors = ["Xiaomao Chen"]
+  s.version = '<%= CURRE1NT_VERSION %>'
+  s.date    = '<%= Time.now.strftime("%Y-%m-%d") %>'
+  s.description = <<EOD
+RubyWiki is a high-performance MediaWiki bot written in entirely Ruby with:
+* Fast Connection Speed done with
+  * Keep-Alive
+  * Sharing cURL Handles
+* Bandwidth Saving with Keep-Alive
+* cURL for HTTP is faster than Net::HTTP
+EOD
+
+  s.email   = 'todd.fisher@gmail.com'
+  s.extra_rdoc_files = ['LICENSE', 'README']
+  <%
+    files = ['LICENSE', 'README', 'Rakefile', ''] + Dir["lib/**/**.rb"]
+  %>
+  s.files = <%= files.inspect %>
+
+  #### Dependencies
+  s.add_dependency 'curb', '>= 0.7.15'
+  s.add_dependency 'highline', '>= 1.2.0'
+  
+  #### Load-time details
+  s.require_paths = ['lib']
+  # s.rubyforge_project = '' # TODO: Create RubyForge Project
+  s.summary = "RubyWiki is a high-performance MediaWiki bot written in entirely Ruby with with useful features"
+  s.test_files = <%= Dir['tests/**/**.rb'].inspect %>
+  
+  #### Documentation and testing.
+  s.has_rdoc = true
+  s.homepage = ''
+
+  s.platform = Gem::Platform::RUBY
+end
