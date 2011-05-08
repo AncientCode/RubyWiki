@@ -21,5 +21,7 @@ Usages & Sample
 ---------------
 Login and print MediaWiki Version:
 
-    wiki = RubyWiki.new
-    puts wiki.site_info_general 'generator'
+```ruby
+wiki = RubyWiki.new
+puts wiki.site_info_general 'generator'
+```
