@@ -1,7 +1,7 @@
-
 *.log
 *.suo
 /test
 /config.yaml
 /test.rb
 /cookie.txt
+/resync.bat
