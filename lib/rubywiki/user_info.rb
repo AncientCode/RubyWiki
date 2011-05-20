@@ -20,6 +20,12 @@ class RubyWiki
 	end
 	
 	def user_id
-		
+		resp = query_processor 'meta', 'userinfo'
+		resp['userinfo']['id']
+	end
+	
+	def user_name
+		resp = query_processor 'meta', 'userinfo'
+		resp['userinfo']['name']
 	end
 end
