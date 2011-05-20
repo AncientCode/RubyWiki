@@ -24,5 +24,7 @@ module RbWikiErr
 		class General < RubyWikiError; end
 		# General Site Info Errors
 		class GeneralSiteInfo < RubyWikiError; end
+		# Get Page Error
+		class GetPage < RubyWikiError; end
 	end
 end

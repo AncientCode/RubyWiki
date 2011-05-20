@@ -289,11 +289,11 @@ class RubyWiki
 	end
 	
 	# Throw an exception in the way of RubyWiki
-	def exception(type, code, message)
+	def exception(type, code, message, nolog=nil)
 		if /^(.+?):(\d+)(?::in `(.*)')?/ =~ caller()[0]
 			method = Regexp.last_match[3]
 		end
-		log("Exception #{type.to_s} raised in '#{method}'!!!", LL_ERROR)
+		log("Exception #{type.to_s} raised in '#{method}'!!!", LL_ERROR) unless nolog
 		raise type, code.to_s + message
 	end
 end

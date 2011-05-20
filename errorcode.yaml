@@ -30,4 +30,10 @@ RbWikiErr::Query:
     # General Site Info Errors
     GeneralSiteInfo:
         310: No Such Type
+    # Get Page Error
+    GetPage:
+        320: Get Page Error
+        321: Missing
+        322: Invalid Title
+        322: Special Page
     
