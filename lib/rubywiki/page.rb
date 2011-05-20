@@ -7,12 +7,12 @@
 require 'init'
 require 'query'
 require 'exceptions'
+require 'data_class'
 require 'yaml'
 
 class RubyWiki
 	def page_exists? name, inside = false
 		resp = get_api 'action=query&prop=info|revisions&intoken=edit&titles=' + urlencode(name)
-		puts YAML::dump resp
 		resp['query']['pages'].each do |page|
 			if page['missing'] == false
 				false
@@ -34,7 +34,7 @@ class RubyWiki
 		end
 	end
 	
-	def get_page 
+	def get_page title
 	end
 	
 	def put_page name, content
