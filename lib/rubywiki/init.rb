@@ -18,6 +18,7 @@ require 'rubygems'
 require 'yaml'
 require 'curb'
 require 'initrbw'
+require 'user_info'
 
 # This is the main RubyWiki class, it contains all you need to perform actions
 # on a wiki. All requests are done with API and YAML (built-in version in the
@@ -159,7 +160,7 @@ class RubyWiki
 		log "Ruby Version #{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}", LL_DEBUG
 		
 		# Login
-		login!
+		login! unless user_name == @user
 	end
 	
 	# Finalizer, destory the temperory file and close the log file
