@@ -14,23 +14,25 @@ require 'yaml'
 class RubyWiki
 	def page_exists? name, inside = false
 		resp = get_api 'action=query&prop=info|revisions&intoken=edit&titles=' + urlencode(name)
-		resp['query']['pages'].each do |page|
+		puts YAML::dump resp
+		page = resp['query']['pages'][0]
+		if inside
+			a = {
+				'token' => page['edittoken'],
+				'obtained' => page['starttimestamp'],
+				'last' => 0,
+				'exist' => page['missing'] == false ? false : true
+			}
+			for rev in page['revisions']
+				a['last'] = rev['timestamp'] if rev['revid'] == page['lastrevid']
+			end if a['exist']
+			puts YAML::dump a
+			a
+		else
 			if page['missing'] == false
 				false
 			else
-				if inside
-					a = {
-						'token' => page['edittoken'],
-						'obtained' => page['starttimestamp'],
-						'last' => 0,
-					}
-					for rev in page['revisions']
-						a['last'] = rev['timestamp'] if rev['revid'] == page['lastrevid']
-					end
-				else
-					true
-				end
-				
+				true
 			end
 		end
 	end
@@ -72,6 +74,7 @@ class RubyWiki
 	
 	def put_page name, content
 		exist = page_exists? name, true
+		
 	end
 	
 	protected # These methods are for using inside the class
